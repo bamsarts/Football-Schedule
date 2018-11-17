@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:local="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+            <TextView
+                    android:id="@+id/text_detail_match_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="-"
+                    android:textSize="15dp" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="115dp"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/detail_club_home_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="---"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                    <ImageView
+                            android:id="@+id/img_detail_club_home_logo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@id/detail_club_home_name" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                        android:id="@+id/detail_club_home_score"
+                        android:layout_width="0dp"
+                        android:layout_height="114dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textSize="21dp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="114dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="VS" />
+
+                <TextView
+                        android:id="@+id/detail_club_away_score"
+                        android:layout_width="0dp"
+                        android:layout_height="114dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textSize="21dp"
+                        android:textStyle="bold" />
+
+                <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="115dp"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/detail_club_away_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="---"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                    <ImageView
+                            android:id="@+id/img_detail_club_away_logo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@id/detail_club_away_name" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <include layout="@layout/horizontal_divider" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:layout_marginTop="13dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/detail_club_home_goals"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3" />
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="Goals"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/detail_club_away_goals"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="end"
+                        android:textAlignment="textEnd" />
+
+            </LinearLayout>
+
+            <include layout="@layout/horizontal_divider" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="Lineup"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/detail_club_home_gk"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3" />
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:gravity="center_horizontal"
+                                android:text="Goal Keeper"
+                                android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                                android:id="@+id/detail_club_away_gk"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:gravity="end"
+                                android:textAlignment="textEnd" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/detail_club_home_df"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3" />
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:gravity="center_horizontal"
+                                android:text="Defense"
+                                android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                                android:id="@+id/detail_club_away_df"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:gravity="end"
+                                android:textAlignment="textEnd" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/detail_club_home_mf"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3" />
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:gravity="center_horizontal"
+                                android:text="Midfielder"
+                                android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                                android:id="@+id/detail_club_away_mf"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:gravity="end"
+                                android:textAlignment="textEnd" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
