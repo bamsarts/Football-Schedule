@@ -3,8 +3,8 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-            android:id="@+id/favorite_star"
-            android:icon="@drawable/ic_star_border"
+            android:id="@+id/favorite_id"
+            android:icon="@drawable/ic_heart"
             android:title="@string/title_fav"
             app:showAsAction="always"/>
 

@@ -4,11 +4,6 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <ProgressBar
-            android:id="@+id/fav_progress"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center_horizontal" />
 
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/fav_swipe"

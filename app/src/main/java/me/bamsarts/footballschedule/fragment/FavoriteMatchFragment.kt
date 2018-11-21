@@ -9,57 +9,58 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import me.bamsarts.footballschedule.R
-import me.bamsarts.footballschedule.detail.MatchDetailActivity
-import me.bamsarts.footballschedule.model.LocalEvent
+import me.bamsarts.footballschedule.activity.MatchDetailActivity
 import org.jetbrains.anko.support.v4.startActivity
-import kotlinx.android.synthetic.main.favorite_match_fragment.*
+import kotlinx.android.synthetic.main.fragment_favorite.*
+import me.bamsarts.footballschedule.DB.Favorite
+import me.bamsarts.footballschedule.R.id.fav_recycler
+import me.bamsarts.footballschedule.R.id.fav_swipe
+import me.bamsarts.footballschedule.adapter.FavoriteRecyclerViewAdapter
+import me.bamsarts.footballschedule.presenter.FavoriteMatchPresenter
 
 
-class FavoriteMatchFragment : Fragment(), FavoriteMatchContract.View, SwipeRefreshLayout.OnRefreshListener {
+class FavoriteMatchFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var presenter: FavoriteMatchPresenter
-    private var listEvent = mutableListOf<LocalEvent>()
+    private var favorites = mutableListOf<Favorite>()
+    private lateinit var adapter: FavoriteRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.favorite_match_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initPresenter()
 
-        val adapter = FavoriteRecyclerViewAdapter(listEvent) {
+        adapter = FavoriteRecyclerViewAdapter(favorites) {
             startActivity<MatchDetailActivity>(
-                "EVENT_ID" to it.idEvent,
-                "HOME_ID" to it.idHomeTeam,
-                "AWAY_ID" to it.idAwayTeam
+                "EVENT_ID" to "${it.idEvent}",
+                "HOME_ID" to "${it.idHomeTeam}",
+                "AWAY_ID" to "${it.idAwayTeam}"
             )
         }
         fav_recycler.layoutManager = LinearLayoutManager(this.context)
         fav_recycler.adapter = adapter
 
+        initPresenter()
+
         fav_swipe.setOnRefreshListener(this)
     }
 
+
     private fun initPresenter() {
-        presenter = FavoriteMatchPresenter(this.context, this)
-        presenter.fetchFavMatches(listEvent)
+        presenter = FavoriteMatchPresenter(this.context)
+        presenter.fetchFavMatches(favorites)
     }
 
-    override fun showProgress(show: Boolean) {
-        if (show) {
-            fav_progress.visibility = View.VISIBLE
-        } else {
-            fav_progress.visibility = View.GONE
-        }
-    }
 
     override fun onRefresh() {
         if (fav_swipe.isRefreshing) {
             Handler().postDelayed({
-                listEvent.clear()
-                presenter.fetchFavMatches(listEvent)
                 fav_swipe.isRefreshing = false
+                favorites.clear()
+                presenter.fetchFavMatches(favorites)
+                adapter.notifyDataSetChanged()
             }, 500)
         }
     }

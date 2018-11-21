@@ -1,4 +1,4 @@
-package me.bamsarts.footballschedule.utils
+package me.bamsarts.footballschedule.DB
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -12,7 +12,8 @@ class DBOpenHelper(context: Context) : ManagedSQLiteOpenHelper(context, "favorit
         @Synchronized
         fun getInstance(ctx: Context): DBOpenHelper {
             if (instance == null) {
-                instance = DBOpenHelper(ctx.applicationContext)
+                instance =
+                        DBOpenHelper(ctx.applicationContext)
             }
             return instance as DBOpenHelper
         }
@@ -20,20 +21,20 @@ class DBOpenHelper(context: Context) : ManagedSQLiteOpenHelper(context, "favorit
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.createTable(
-            "FavoriteMatch", true,
-            "id" to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
-            "idEvent" to TEXT,
-            "idSoccerXML" to TEXT,
-            "idHomeTeam" to TEXT,
-            "idAwayTeam" to TEXT,
-            "strHomeTeam" to TEXT,
-            "strAwayTeam" to TEXT,
-            "intHomeScore" to TEXT,
-            "intAwayScore" to TEXT,
-            "dateEvent" to TEXT,
-            "strDate" to TEXT
+            Favorite.FavoriteMatch, true, Favorite.id to INTEGER+ PRIMARY_KEY+ AUTOINCREMENT,
+            Favorite.idEvent to TEXT + UNIQUE,
+            Favorite.dateEvent to TEXT,
+            Favorite.strHomeTeam to TEXT,
+            Favorite.strAwayTeam to TEXT,
+            Favorite.intHomeScore to TEXT,
+            Favorite.intAwayScore to TEXT,
+            Favorite.idHomeTeam to TEXT,
+            Favorite.idAwayTeam to TEXT,
+            Favorite.idSoccerXML to TEXT,
+            Favorite.strDate to TEXT
         )
     }
+
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.dropTable("FavoriteMatch", true)

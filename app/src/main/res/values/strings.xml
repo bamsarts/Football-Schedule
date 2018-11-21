@@ -2,5 +2,18 @@
     <string name="app_name">FootballSchedule</string>
     <string name="title_home">Home</string>
     <string name="title_fav">Favorit</string>
+    <string name="nextMatch">Next Match</string>
+    <string name="prevMatch">Previous Match</string>
+
+    <string name="stripe">-</string>
+    <string name="vs">VS</string>
+    <string name="goals">Goals</string>
+    <string name="shots">Shots</string>
+    <string name="lineups">Lineups</string>
+    <string name="goalkeeper">Goal Keeper</string>
+    <string name="midfield">Midfield</string>
+    <string name="forward">Forward</string>
+    <string name="subtitutes">Subtitutes</string>
+    <string name="defense">Defense</string>
 
 </resources>

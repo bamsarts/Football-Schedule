@@ -30,23 +30,17 @@ data class Match(
     @SerializedName("idAwayTeam")
     var awayId: String? = null,
 
-    @SerializedName("strHomeGoalDetails")
-    val homeGoalDetails: String? = null,
-
-    @SerializedName("strAwayGoalDetails")
-    val awayGoalDetails: String? = null,
-
     @SerializedName("intHomeShots")
-    val homeShots: Int? = null,
+    val homeShots: String? = null,
 
     @SerializedName("intAwayShots")
-    val awayShots: Int? = null,
+    val awayShots: String? = null,
 
     @SerializedName("strHomeLineupGoalkeeper")
-    val homeGoalKeeper: String? = null,
+    val homeGK: String? = null,
 
     @SerializedName("strAwayLineupGoalkeeper")
-    val awayGoalKeeper: String? = null,
+    val awayGK: String? = null,
 
     @SerializedName("strHomeLineupDefense")
     val homeDefense: String? = null,

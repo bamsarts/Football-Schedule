@@ -1,21 +1,20 @@
-package me.bamsarts.footballschedule.fragment
+package me.bamsarts.footballschedule.presenter
 
 import android.content.Context
-import me.bamsarts.footballschedule.model.LocalEvent
-import me.bamsarts.footballschedule.utils.database
+import me.bamsarts.footballschedule.DB.Favorite
+import me.bamsarts.footballschedule.DB.database
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.parseList
 import org.jetbrains.anko.db.select
 
-class FavoriteMatchPresenter(private val context: Context?, private val view: FavoriteMatchContract.View?){
+class FavoriteMatchPresenter(private val context: Context?){
 
-    fun fetchFavMatches(list: MutableList<LocalEvent>) {
-        this.view?.showProgress(true)
+    fun fetchFavMatches(list: MutableList<Favorite>) {
         this.context?.database?.use {
-            select("FavoriteMatch").exec {
-                parseList(object : MapRowParser<MutableList<LocalEvent>> {
-                    override fun parseRow(columns: Map<String, Any?>): MutableList<LocalEvent> {
-                        val evt = LocalEvent(
+            select(Favorite.FavoriteMatch).exec {
+                parseList(object : MapRowParser<MutableList<Favorite>> {
+                    override fun parseRow(columns: Map<String, Any?>): MutableList<Favorite> {
+                        val evt = Favorite(
                             idEvent = columns["idEvent"].toString(),
                             idSoccerXML = columns["idSoccerXML"].toString(),
                             idHomeTeam = columns["idHomeTeam"].toString(),
@@ -35,7 +34,7 @@ class FavoriteMatchPresenter(private val context: Context?, private val view: Fa
                 })
             }
 
-            this@FavoriteMatchPresenter.view?.showProgress(false)
+            this@FavoriteMatchPresenter
         }
     }
 }

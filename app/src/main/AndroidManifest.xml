@@ -13,8 +13,7 @@
             android:theme="@style/AppTheme">
 
         <activity
-                android:name=".main.SplashScreenActivity"
-                android:theme="@style/SplashTheme">
+                android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" />
-        <activity android:name=".detail.MatchDetailActivity"></activity>
+        <activity android:name=".activity.MatchDetailActivity"></activity>
     </application>
 
 </manifest>
