@@ -18,9 +18,6 @@ interface SportDB {
     @GET("api/v1/json/1/lookupteam.php")
     fun getClubDetailById(@Query("id") id: String?): Call<TeamResponses>
 
-    @GET("api/v1/json/1/lookupevent.php")
-    fun getEventDetailById(@Query("id") id: String?): Call<MatchesResponses>
-
 }
 
 object TheSportDB {

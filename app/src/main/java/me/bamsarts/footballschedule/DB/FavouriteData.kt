@@ -1,15 +1,15 @@
 package me.bamsarts.footballschedule.DB
 
-data class Favorite(val idEvent: String?,
-                    val idSoccerXML: String?,
-                    val strHomeTeam: String?,
-                    val strAwayTeam: String?,
-                    val intHomeScore: String?,
-                    val intAwayScore: String?,
-                    val dateEvent: String?,
-                    val strDate: String?,
-                    val idHomeTeam: String?,
-                    val idAwayTeam: String?){
+data class FavouriteData(val idEvent: String?,
+                         val idSoccerXML: String?,
+                         val strHomeTeam: String?,
+                         val strAwayTeam: String?,
+                         val intHomeScore: String?,
+                         val intAwayScore: String?,
+                         val dateEvent: String?,
+                         val strDate: String?,
+                         val idHomeTeam: String?,
+                         val idAwayTeam: String?){
 
     companion object {
         const val FavoriteMatch: String = "FavoriteMatch"

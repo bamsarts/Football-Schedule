@@ -1,7 +1,7 @@
 package me.bamsarts.footballschedule.presenter
 
 import android.content.Context
-import me.bamsarts.footballschedule.DB.Favorite
+import me.bamsarts.footballschedule.DB.FavouriteData
 import me.bamsarts.footballschedule.DB.database
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.parseList
@@ -9,12 +9,12 @@ import org.jetbrains.anko.db.select
 
 class FavoriteMatchPresenter(private val context: Context?){
 
-    fun fetchFavMatches(list: MutableList<Favorite>) {
+    fun fetchFavMatches(list: MutableList<FavouriteData>) {
         this.context?.database?.use {
-            select(Favorite.FavoriteMatch).exec {
-                parseList(object : MapRowParser<MutableList<Favorite>> {
-                    override fun parseRow(columns: Map<String, Any?>): MutableList<Favorite> {
-                        val evt = Favorite(
+            select(FavouriteData.FavoriteMatch).exec {
+                parseList(object : MapRowParser<MutableList<FavouriteData>> {
+                    override fun parseRow(columns: Map<String, Any?>): MutableList<FavouriteData> {
+                        val evt = FavouriteData(
                             idEvent = columns["idEvent"].toString(),
                             idSoccerXML = columns["idSoccerXML"].toString(),
                             idHomeTeam = columns["idHomeTeam"].toString(),

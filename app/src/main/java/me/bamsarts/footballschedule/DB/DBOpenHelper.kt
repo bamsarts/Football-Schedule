@@ -21,17 +21,17 @@ class DBOpenHelper(context: Context) : ManagedSQLiteOpenHelper(context, "favorit
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.createTable(
-            Favorite.FavoriteMatch, true, Favorite.id to INTEGER+ PRIMARY_KEY+ AUTOINCREMENT,
-            Favorite.idEvent to TEXT + UNIQUE,
-            Favorite.dateEvent to TEXT,
-            Favorite.strHomeTeam to TEXT,
-            Favorite.strAwayTeam to TEXT,
-            Favorite.intHomeScore to TEXT,
-            Favorite.intAwayScore to TEXT,
-            Favorite.idHomeTeam to TEXT,
-            Favorite.idAwayTeam to TEXT,
-            Favorite.idSoccerXML to TEXT,
-            Favorite.strDate to TEXT
+            FavouriteData.FavoriteMatch, true, FavouriteData.id to INTEGER+ PRIMARY_KEY+ AUTOINCREMENT,
+            FavouriteData.idEvent to TEXT + UNIQUE,
+            FavouriteData.dateEvent to TEXT,
+            FavouriteData.strHomeTeam to TEXT,
+            FavouriteData.strAwayTeam to TEXT,
+            FavouriteData.intHomeScore to TEXT,
+            FavouriteData.intAwayScore to TEXT,
+            FavouriteData.idHomeTeam to TEXT,
+            FavouriteData.idAwayTeam to TEXT,
+            FavouriteData.idSoccerXML to TEXT,
+            FavouriteData.strDate to TEXT
         )
     }
 

@@ -2,6 +2,7 @@ package me.bamsarts.footballschedule.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
@@ -18,18 +19,17 @@ import kotlinx.android.synthetic.main.match_detail.*
 import me.bamsarts.footballschedule.APIs.ApiRepo
 import me.bamsarts.footballschedule.R.id.*
 import me.bamsarts.footballschedule.model.Match
-import me.bamsarts.footballschedule.presenter.MatchDetailPresenter
+import me.bamsarts.footballschedule.presenter.DetailMatchPresenter
 import me.bamsarts.footballschedule.utils.formatDate
 import me.bamsarts.footballschedule.utils.parse
 import me.bamsarts.footballschedule.view.DetailView
-import org.jetbrains.anko.matchParent
 
 class MatchDetailActivity : AppCompatActivity(), DetailView {
 
-    private val presenter: MatchDetailPresenter = MatchDetailPresenter(this, this, ApiRepo(), Gson())
-//    private var idEvent : String? = ""
-    private lateinit var event : Match
+    private val presenter: DetailMatchPresenter = DetailMatchPresenter(this, this, ApiRepo(), Gson())
+    private lateinit var events : Match
     private var isFavorite: Boolean = false
+    private var menuItem: Menu? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,92 +43,54 @@ class MatchDetailActivity : AppCompatActivity(), DetailView {
         stateFavorite(idEvent)
 
         presenter.getEventDetail(idEvent)
-
-        ApiRepository.retrofit
-            .create(SportDB::class.java)
-            .getClubDetailById(idHome)
-            .enqueue(object : Callback<TeamResponses> {
-                override fun onFailure(call: Call<TeamResponses>, t: Throwable) {
-
-                }
-
-                override fun onResponse(call: Call<TeamResponses>, response: Response<TeamResponses>) {
-                    val imgUrl = response.body()?.teams?.get(0)?.strTeamBadge
-                    Glide.with(this@MatchDetailActivity).load(imgUrl).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(imgHome)
-                }
-
-            })
-
-        ApiRepository.retrofit.create(SportDB::class.java)
-            .getClubDetailById(idAway)
-            .enqueue(object : Callback<TeamResponses> {
-                override fun onFailure(call: Call<TeamResponses>, t: Throwable) {
-
-                }
-
-                override fun onResponse(call: Call<TeamResponses>, response: Response<TeamResponses>) {
-                    val imgUrl = response.body()?.teams?.get(0)?.strTeamBadge
-                    Glide.with(this@MatchDetailActivity).load(imgUrl).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(imgAway)
-                }
-
-            })
-
+        presenter.getTeamBadgeHome(idHome)
+        presenter.getTeamBadgeAway(idAway)
 
         val actionbar = supportActionBar
         actionbar?.setDisplayHomeAsUpEnabled(true)
 
     }
 
-//    override fun initValue(match: Match){
-//        this.event = match
-//
-//        dateMatch.text = match.eventDate
-//        clubHome.text = match.homeTeam
-//        clubAway.text = match.awayTeam
-//        scoreHome.text = match.homeScore
-//        scoreAway.text = match.awayScore
-//        gkHome.text = match.homeGK
-//        gkAway.text = match.awayGK
-//        defenseHome.text = match.homeDefense
-//        defenseAway.text = match.awayDefense
-//        midfieldHome.text = match.homeMidfield
-//        midfieldAway.text = match.awayMidfield
-//        forwardHome.text = match.homeForward
-//        forwardAway.text = match.awayForward
-//        subtitutesHome.text = match.homeSubtitutes
-//        subtitutesAway.text = match.awaySubtitutes
-//        shotsHome.text = match.homeShots
-//        shotsAway.text = match.awayShots
-//    }
+    override fun showBadgeAway(imgURL: String?) {
+        Glide.with(this@MatchDetailActivity).load(imgURL).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(
+            imgAway
+        )
+    }
+
+    override fun showBadgeHome(imgURL: String?) {
+        Glide.with(this@MatchDetailActivity).load(imgURL).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(
+            imgHome
+        )
+    }
 
     override fun showDetailEvent(match: Match) {
-        this.event = match
+        this.events = match
 
         dateMatch.text = match.eventDate?.formatDate()
 
         clubHome.text = match.homeTeam
         clubAway.text = match.awayTeam
 
-        scoreHome.text = match.homeScore
-        scoreAway.text = match.awayScore
+        scoreHome.text = if(match.homeScore == null) "-" else match.homeScore
+        scoreAway.text = if(match.awayScore == null) "-" else match.awayScore
 
-        shotsHome.text = match.homeShots
-        shotsAway.text = match.awayShots
+        shotsHome.text = if(match.homeShots == null) "-" else match.homeShots
+        shotsAway.text = if(match.awayShots == null) "-" else match.awayShots
 
-        gkHome.text = match.homeGK
-        gkAway.text = match.awayGK
+        gkHome.text = if(match.homeGK == null) "-" else match.homeGK
+        gkAway.text = if(match.awayGK == null) "-" else match.awayGK
 
-        defenseHome.text = match.homeDefense?.parse()
-        defenseAway.text = match.awayDefense?.parse()
+        defenseHome.text = if(match.homeDefense == null) "-" else match.homeDefense.parse()
+        defenseAway.text = if(match.awayDefense == null) "-" else match.awayDefense.parse()
 
-        midfieldHome.text = match.homeMidfield?.parse()
-        midfieldAway.text = match.awayMidfield?.parse()
+        midfieldHome.text = if(match.homeMidfield == null) "-" else match.homeMidfield.parse()
+        midfieldAway.text = if(match.awayMidfield == null) "-" else match.awayMidfield.parse()
 
-        forwardHome.text = match.homeForward?.parse()
-        forwardAway.text = match.awayForward?.parse()
+        forwardHome.text = if(match.homeForward == null) "-" else match.homeForward.parse()
+        forwardAway.text = if(match.awayForward == null) "-" else match.awayForward.parse()
 
-        subtitutesHome.text = match.homeSubtitutes?.parse()
-        subtitutesAway.text = match.awaySubtitutes?.parse()
+        subtitutesHome.text = if(match.homeSubtitutes == null) "-" else match.homeSubtitutes.parse()
+        subtitutesAway.text = if(match.awaySubtitutes == null) "-" else match.awaySubtitutes.parse()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -140,16 +102,10 @@ class MatchDetailActivity : AppCompatActivity(), DetailView {
         return super.onPrepareOptionsMenu(menu)
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.favorite, menu)
-
-        val item = menu?.findItem(R.id.favorite_id)
-        if (isFavorite) {
-            item?.setIcon(R.drawable.ic_fill_heart)
-        } else {
-            item?.setIcon(R.drawable.ic_heart)
-        }
+        menuItem = menu
+        setFavorite()
 
         return true
     }
@@ -158,12 +114,15 @@ class MatchDetailActivity : AppCompatActivity(), DetailView {
         when (item?.itemId) {
             R.id.favorite_id -> {
                 if (isFavorite) {
-                    presenter.deleteFavoriteMatch(event.eventId.toString())
-                    item.setIcon(R.drawable.ic_heart)
+                    presenter.deleteFavoriteMatch(events.eventId.toString())
+
                 } else {
-                    presenter.saveFavoriteMatch(event)
-                    item.setIcon(R.drawable.ic_fill_heart)
+                    presenter.saveFavoriteMatch(events)
+
                 }
+
+                isFavorite = !isFavorite
+                setFavorite()
 
                 return true
             }
@@ -171,6 +130,14 @@ class MatchDetailActivity : AppCompatActivity(), DetailView {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun setFavorite(){
+        if(isFavorite){
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_fill_heart)
+        }else{
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_heart)
+        }
+
+    }
 
     private fun stateFavorite(eventId: String){
         val state = presenter.getFavoriteMatchById(eventId).size

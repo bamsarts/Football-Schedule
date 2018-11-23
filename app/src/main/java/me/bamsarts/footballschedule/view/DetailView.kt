@@ -6,5 +6,6 @@ interface DetailView {
 
 //    fun initValue(match: Match)
     fun showDetailEvent(data: Match)
-
+    fun showBadgeAway(imgURL: String?)
+    fun showBadgeHome(imgURL: String?)
 }

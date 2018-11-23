@@ -6,7 +6,7 @@ import com.nhaarman.mockito_kotlin.verify
 import me.bamsarts.footballschedule.APIs.ApiRepositoryCallback
 import me.bamsarts.footballschedule.view.DetailView
 import me.bamsarts.footballschedule.model.MatchesResponses
-import me.bamsarts.footballschedule.presenter.MatchDetailPresenter
+import me.bamsarts.footballschedule.presenter.DetailMatchPresenter
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -21,12 +21,12 @@ class MatchDetailPresenterTest{
         @Mock
         private val context = Context
 
-        private lateinit var matchDetailPresenter: MatchDetailPresenter
+        private lateinit var matchDetailPresenter: DetailMatchPresenter
 
         @Before
         fun setUp(){
             MockitoAnnotations.initMocks(this)
-            matchDetailPresenter = MatchDetailPresenter(Context, DetailView)
+            matchDetailPresenter = DetailMatchPresenter(Context, DetailView)
         }
 
         @Test

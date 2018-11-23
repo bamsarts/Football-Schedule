@@ -23,11 +23,11 @@ class NextRecyclerViewAdapter(private val list: MutableList<Match>, private val 
     }
 
     class NextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val homeName = view.find<TextView>(R.id.daftar_home_name)
-        val eventDate: TextView = view.find(R.id.daftar_date_event)
-        val homeScore = view.find<TextView>(R.id.daftar_home_score)
-        val awayName = view.find<TextView>(R.id.daftar_away_name)
-        val awayScore = view.find<TextView>(R.id.daftar_away_score)
+        val homeName = view.find<TextView>(R.id.homeTeamName)
+        val eventDate: TextView = view.find(R.id.date)
+        val homeScore = view.find<TextView>(R.id.homeScore)
+        val awayName = view.find<TextView>(R.id.awayTeamName)
+        val awayScore = view.find<TextView>(R.id.awayscore)
 
         fun bindItem(e: Match, listener: (Match) -> Unit) {
             homeName.text = e.homeTeam
