@@ -24,11 +24,11 @@ class FavouriteAdapter(private val favorite:List<FavouriteData>,
 
         fun bindItem(favorite: FavouriteData, listener: (FavouriteData) -> Unit){
 
-            eventDate.text = favorite.dateEvent
+            eventDate.text = favorite.DATE_EVENT
             homeName.text = favorite.strHomeTeam
-            homeScore.text = favorite.intHomeScore
+            homeScore.text = favorite.intHomeScore?: "-"
             awayName.text = favorite.strAwayTeam
-            awayScore.text = favorite.intAwayScore
+            awayScore.text = favorite.intAwayScore?: "-"
 
             itemView.onClick { listener(favorite) }
         }
@@ -44,9 +44,6 @@ class FavouriteAdapter(private val favorite:List<FavouriteData>,
     }
 
     override fun getItemCount(): Int = favorite.size
-
-
-
 
 }
 

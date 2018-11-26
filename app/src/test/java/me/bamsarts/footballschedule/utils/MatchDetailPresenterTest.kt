@@ -5,7 +5,7 @@ import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.verify
 import me.bamsarts.footballschedule.APIs.ApiRepositoryCallback
 import me.bamsarts.footballschedule.view.DetailView
-import me.bamsarts.footballschedule.model.MatchesResponses
+import me.bamsarts.footballschedule.model.MatchResponse
 import me.bamsarts.footballschedule.presenter.DetailMatchPresenter
 import org.junit.Before
 import org.junit.Test
@@ -32,9 +32,9 @@ class MatchDetailPresenterTest{
         @Test
         fun getMatchResponseTest(){
             val idEvent = "576584"
-            matchDetailPresenter.getClubDetailById(idEvent)
+            matchDetailPresenter.clubDetail(idEvent)
 
-            argumentCaptor<ApiRepositoryCallback<MatchesResponses>>().apply {
+            argumentCaptor<ApiRepositoryCallback<MatchResponse>>().apply {
                 verify()
             }
         }

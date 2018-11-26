@@ -12,7 +12,7 @@ import me.bamsarts.footballschedule.activity.MatchDetailActivity
 import org.jetbrains.anko.support.v4.startActivity
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import me.bamsarts.footballschedule.DB.FavouriteData
-import me.bamsarts.footballschedule.R.id.fav_recycler
+import me.bamsarts.footballschedule.R.id.listFavourite
 import me.bamsarts.footballschedule.adapter.FavouriteAdapter
 import me.bamsarts.footballschedule.presenter.FavoriteMatchPresenter
 import org.jetbrains.anko.find
@@ -28,12 +28,12 @@ class FavoriteMatchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_favorite, container, false)
-        swipe = rootView.find(R.id.fav_swipe)
+        swipe = rootView.find(R.id.swipeLayout)
         swipe.setColorSchemeResources(R.color.colorTosca)
 
         adapter = FavouriteAdapter(favourites) {
             startActivity<MatchDetailActivity>(
-                "EVENT_ID" to "${it.idEvent}",
+                "EVENT_ID" to "${it.ID_EVENT}",
                 "HOME_ID" to "${it.idHomeTeam}",
                 "AWAY_ID" to "${it.idAwayTeam}"
             )
@@ -49,8 +49,8 @@ class FavoriteMatchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fav_recycler.layoutManager = LinearLayoutManager(this.context)
-        fav_recycler.adapter = adapter
+        listFavourite.layoutManager = LinearLayoutManager(this.context)
+        listFavourite.adapter = adapter
 
         initPresenter()
 

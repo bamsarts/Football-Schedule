@@ -6,12 +6,12 @@
 
 
     <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/fav_swipe"
+            android:id="@+id/swipeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/fav_recycler"
+                android:id="@+id/listFavourite"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

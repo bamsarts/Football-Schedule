@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import me.bamsarts.footballschedule.R.id.navbar
 import me.bamsarts.footballschedule.fragment.FavoriteMatchFragment
-import me.bamsarts.footballschedule.fragment.NextFragment
-import me.bamsarts.footballschedule.fragment.PrevFragment
+import me.bamsarts.footballschedule.fragment.NextMatchFragment
+import me.bamsarts.footballschedule.fragment.PreviousMatchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -17,16 +17,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navbar.setOnNavigationItemSelectedListener {
             item -> when(item.itemId){
-                R.id.navigation_prev-> {
-                    openFragment(PrevFragment())
+                R.id.previousNavigator-> {
+                    openFragment(PreviousMatchFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.navigation_next -> {
-                    openFragment(NextFragment())
+                R.id.nextNavigator -> {
+                    openFragment(NextMatchFragment())
                     return@setOnNavigationItemSelectedListener true
 
                 }
-                R.id.navigation_fav -> {
+                R.id.favouriteNavigator -> {
                     openFragment(FavoriteMatchFragment())
                     return@setOnNavigationItemSelectedListener true
 
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        openFragment(PrevFragment())
+        openFragment(PreviousMatchFragment())
     }
 
     private fun openFragment(fragment: Fragment) {

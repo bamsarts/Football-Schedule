@@ -6,7 +6,7 @@ android:id="@+id/swipe"
 android:layout_margin="8dp"
 >
 <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_next"
+        android:id="@+id/idNextMatch"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

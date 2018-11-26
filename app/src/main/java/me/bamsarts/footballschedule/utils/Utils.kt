@@ -1,17 +1,9 @@
 package me.bamsarts.footballschedule.utils
 
 import android.annotation.SuppressLint
-import android.view.View
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun View.visible() {
-    visibility = View.VISIBLE
-}
-
-fun View.invisible() {
-    visibility = View.GONE
-}
 
 fun String.formatDate(fromDateFormat:String="dd/MM/yy", toDateFormat:String = "E, dd MMM yyyy") : String {
     val date = SimpleDateFormat(fromDateFormat).parse(this)

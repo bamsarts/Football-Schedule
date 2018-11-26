@@ -8,13 +8,7 @@ import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.gson.Gson
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import me.bamsarts.footballschedule.R
-import me.bamsarts.footballschedule.APIs.ApiRepository
-import me.bamsarts.footballschedule.APIs.SportDB
-import me.bamsarts.footballschedule.model.TeamResponses
 import kotlinx.android.synthetic.main.match_detail.*
 import me.bamsarts.footballschedule.APIs.ApiRepo
 import me.bamsarts.footballschedule.R.id.*
@@ -30,7 +24,6 @@ class MatchDetailActivity : AppCompatActivity(), DetailView {
     private lateinit var events : Match
     private var isFavorite: Boolean = false
     private var menuItem: Menu? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

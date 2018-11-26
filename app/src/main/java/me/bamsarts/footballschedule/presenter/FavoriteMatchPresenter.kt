@@ -11,19 +11,18 @@ class FavoriteMatchPresenter(private val context: Context?){
 
     fun fetchFavMatches(list: MutableList<FavouriteData>) {
         this.context?.database?.use {
-            select(FavouriteData.FavoriteMatch).exec {
+            select(FavouriteData.TABLE_FAVOURITE_MATCH).exec {
                 parseList(object : MapRowParser<MutableList<FavouriteData>> {
                     override fun parseRow(columns: Map<String, Any?>): MutableList<FavouriteData> {
                         val evt = FavouriteData(
-                            idEvent = columns["idEvent"].toString(),
-                            idSoccerXML = columns["idSoccerXML"].toString(),
+                            ID_EVENT = columns["ID_EVENT"].toString(),
                             idHomeTeam = columns["idHomeTeam"].toString(),
                             strHomeTeam = columns["strHomeTeam"].toString(),
                             idAwayTeam = columns["idAwayTeam"].toString(),
                             strAwayTeam = columns["strAwayTeam"].toString(),
-                            intHomeScore = if (columns["intHomeScore"].toString() != "null") columns["intHomeScore"].toString() else "",
-                            intAwayScore = if (columns["intAwayScore"].toString() != "null") columns["intAwayScore"].toString() else "",
-                            dateEvent = columns["dateEvent"].toString(),
+                            intHomeScore = if (columns["intHomeScore"].toString() != "null") columns["intHomeScore"].toString() else "-",
+                            intAwayScore = if (columns["intAwayScore"].toString() != "null") columns["intAwayScore"].toString() else "-",
+                            DATE_EVENT = columns["DATE_EVENT"].toString(),
                             strDate = columns["strDate"].toString()
                         )
 
