@@ -1,4 +1,4 @@
-package me.bamsarts.footballschedule.DB
+package me.bamsarts.footballschedule.db
 
 data class FavouriteData(val ID_EVENT: String?,
                          val strHomeTeam: String?,

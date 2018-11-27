@@ -13,8 +13,7 @@ import org.jetbrains.anko.support.v4.startActivity
 import me.bamsarts.footballschedule.R
 import me.bamsarts.footballschedule.activity.MatchDetailActivity
 import kotlinx.android.synthetic.main.fragment_next.*
-import me.bamsarts.footballschedule.APIs.ApiRepo
-import me.bamsarts.footballschedule.R.id.idNextMatch
+import me.bamsarts.footballschedule.apis.ApiRepo
 import me.bamsarts.footballschedule.adapter.NextMatchAdapter
 import me.bamsarts.footballschedule.presenter.ListMatchPresenter
 import me.bamsarts.footballschedule.view.ListMatchView

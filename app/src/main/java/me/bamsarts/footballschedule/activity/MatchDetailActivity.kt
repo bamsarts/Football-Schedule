@@ -10,13 +10,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.gson.Gson
 import me.bamsarts.footballschedule.R
 import kotlinx.android.synthetic.main.match_detail.*
-import me.bamsarts.footballschedule.APIs.ApiRepo
-import me.bamsarts.footballschedule.R.id.*
+import me.bamsarts.footballschedule.apis.ApiRepo
 import me.bamsarts.footballschedule.model.Match
 import me.bamsarts.footballschedule.presenter.DetailMatchPresenter
 import me.bamsarts.footballschedule.utils.formatDate
 import me.bamsarts.footballschedule.utils.parse
 import me.bamsarts.footballschedule.view.DetailView
+import org.jetbrains.anko.toast
 
 class MatchDetailActivity : AppCompatActivity(), DetailView {
 
@@ -56,43 +56,48 @@ class MatchDetailActivity : AppCompatActivity(), DetailView {
         )
     }
 
-    override fun showDetailEvent(match: Match) {
-        this.events = match
+    override fun showDetailEvent(match: List<Match>) {
+        events = Match(
+            match[0].eventId,
+            match[0].eventDate,
+            match[0].homeTeam,
+            match[0].awayTeam,
+            match[0].homeScore,
+            match[0].awayScore,
+            match[0].homeId,
+            match[0].awayId
+        )
 
-        dateMatch.text = match.eventDate?.formatDate()
+        dateMatch.text = match[0].eventDate?.formatDate()
 
-        clubHome.text = match.homeTeam
-        clubAway.text = match.awayTeam
+        clubHome.text = match[0].homeTeam
+        clubAway.text = match[0].awayTeam
 
-        scoreHome.text = if(match.homeScore == null) "-" else match.homeScore
-        scoreAway.text = if(match.awayScore == null) "-" else match.awayScore
+        scoreHome.text = if(match[0].homeScore == null) "-" else match[0].homeScore
+        scoreAway.text = if(match[0].awayScore == null) "-" else match[0].awayScore
 
-        shotsHome.text = if(match.homeShots == null) "-" else match.homeShots
-        shotsAway.text = if(match.awayShots == null) "-" else match.awayShots
+        shotsHome.text = if(match[0].homeShots == null) "-" else match[0].homeShots
+        shotsAway.text = if(match[0].awayShots == null) "-" else match[0].awayShots
 
-        gkHome.text = if(match.homeGK == null) "-" else match.homeGK
-        gkAway.text = if(match.awayGK == null) "-" else match.awayGK
+        gkHome.text = if(match[0].homeGK == null) "-" else match[0].homeGK
+        gkAway.text = if(match[0].awayGK == null) "-" else match[0].awayGK
 
-        defenseHome.text = if(match.homeDefense == null) "-" else match.homeDefense.parse()
-        defenseAway.text = if(match.awayDefense == null) "-" else match.awayDefense.parse()
+        defenseHome.text = if(match[0].homeDefense == null) "-" else match[0].homeDefense?.parse()
+        defenseAway.text = if(match[0].awayDefense == null) "-" else match[0].awayDefense?.parse()
 
-        midfieldHome.text = if(match.homeMidfield == null) "-" else match.homeMidfield.parse()
-        midfieldAway.text = if(match.awayMidfield == null) "-" else match.awayMidfield.parse()
+        midfieldHome.text = if(match[0].homeMidfield == null) "-" else match[0].homeMidfield?.parse()
+        midfieldAway.text = if(match[0].awayMidfield == null) "-" else match[0].awayMidfield?.parse()
 
-        forwardHome.text = if(match.homeForward == null) "-" else match.homeForward.parse()
-        forwardAway.text = if(match.awayForward == null) "-" else match.awayForward.parse()
+        forwardHome.text = if(match[0].homeForward == null) "-" else match[0].homeForward?.parse()
+        forwardAway.text = if(match[0].awayForward == null) "-" else match[0].awayForward?.parse()
 
-        subtitutesHome.text = if(match.homeSubtitutes == null) "-" else match.homeSubtitutes.parse()
-        subtitutesAway.text = if(match.awaySubtitutes == null) "-" else match.awaySubtitutes.parse()
+        subtitutesHome.text = if(match[0].homeSubtitutes == null) "-" else match[0].homeSubtitutes?.parse()
+        subtitutesAway.text = if(match[0].awaySubtitutes == null) "-" else match[0].awaySubtitutes?.parse()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -106,12 +111,13 @@ class MatchDetailActivity : AppCompatActivity(), DetailView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.favorite_id -> {
-                if (isFavorite) {
+                if (this::events.isInitialized && isFavorite) {
                     presenter.deleteFavoriteMatch(events.eventId.toString())
 
-                } else {
+                } else if(this::events.isInitialized) {
                     presenter.saveFavoriteMatch(events)
-
+                }else{
+                    toast("Data Belum Siap, Periksa Internet Anda")
                 }
 
                 isFavorite = !isFavorite

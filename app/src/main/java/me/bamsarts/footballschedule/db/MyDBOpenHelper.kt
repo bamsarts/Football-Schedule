@@ -1,4 +1,4 @@
-package me.bamsarts.footballschedule.DB
+package me.bamsarts.footballschedule.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

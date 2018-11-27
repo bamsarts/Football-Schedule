@@ -3,7 +3,6 @@ package me.bamsarts.footballschedule
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import me.bamsarts.footballschedule.R.id.navbar
 import me.bamsarts.footballschedule.fragment.FavoriteMatchFragment
 import me.bamsarts.footballschedule.fragment.NextMatchFragment
 import me.bamsarts.footballschedule.fragment.PreviousMatchFragment

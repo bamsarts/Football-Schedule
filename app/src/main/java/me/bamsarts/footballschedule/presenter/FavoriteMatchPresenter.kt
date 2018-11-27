@@ -1,8 +1,8 @@
 package me.bamsarts.footballschedule.presenter
 
 import android.content.Context
-import me.bamsarts.footballschedule.DB.FavouriteData
-import me.bamsarts.footballschedule.DB.database
+import me.bamsarts.footballschedule.db.FavouriteData
+import me.bamsarts.footballschedule.db.database
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.parseList
 import org.jetbrains.anko.db.select

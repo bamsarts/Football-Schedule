@@ -1,3 +1,8 @@
 package me.bamsarts.footballschedule.model
 
-class TeamResponse (var teams: MutableList<Team>)
+import com.google.gson.annotations.SerializedName
+
+data class TeamResponse (
+    @SerializedName("teams")
+    var teams: List<Team>
+)

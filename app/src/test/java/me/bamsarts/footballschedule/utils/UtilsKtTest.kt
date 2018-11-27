@@ -1,6 +1,6 @@
 package me.bamsarts.footballschedule.utils
 
-import me.bamsarts.footballschedule.APIs.ApiRepo
+import me.bamsarts.footballschedule.apis.ApiRepo
 import org.junit.Test
 
 import org.junit.Assert.*

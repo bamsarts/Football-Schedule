@@ -11,8 +11,7 @@ import me.bamsarts.footballschedule.R
 import me.bamsarts.footballschedule.activity.MatchDetailActivity
 import org.jetbrains.anko.support.v4.startActivity
 import kotlinx.android.synthetic.main.fragment_favorite.*
-import me.bamsarts.footballschedule.DB.FavouriteData
-import me.bamsarts.footballschedule.R.id.listFavourite
+import me.bamsarts.footballschedule.db.FavouriteData
 import me.bamsarts.footballschedule.adapter.FavouriteAdapter
 import me.bamsarts.footballschedule.presenter.FavoriteMatchPresenter
 import org.jetbrains.anko.find

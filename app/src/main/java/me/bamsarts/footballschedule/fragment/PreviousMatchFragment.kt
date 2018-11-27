@@ -13,8 +13,7 @@ import me.bamsarts.footballschedule.R
 import me.bamsarts.footballschedule.activity.MatchDetailActivity
 import me.bamsarts.footballschedule.model.Match
 import kotlinx.android.synthetic.main.fragment_prev.*
-import me.bamsarts.footballschedule.APIs.ApiRepo
-import me.bamsarts.footballschedule.R.id.idPreviousMatch
+import me.bamsarts.footballschedule.apis.ApiRepo
 import me.bamsarts.footballschedule.adapter.PreviousMatchAdapter
 import me.bamsarts.footballschedule.presenter.ListMatchPresenter
 import me.bamsarts.footballschedule.view.ListMatchView
@@ -27,7 +26,7 @@ class PreviousMatchFragment : Fragment(), ListMatchView{
     private lateinit var presenter: ListMatchPresenter
     private lateinit var adapter: PreviousMatchAdapter
     private var events = mutableListOf<Match>()
-    private val leagueId = 4396
+    private val leagueId = "4328"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_prev, container, false)
@@ -54,9 +53,9 @@ class PreviousMatchFragment : Fragment(), ListMatchView{
         idPreviousMatch.layoutManager = LinearLayoutManager(context)
         idPreviousMatch.adapter = adapter
         presenter = ListMatchPresenter(this, ApiRepo(), Gson())
-        presenter.getPreviousMatch()
+        presenter.getPreviousMatch(leagueId)
         swipe.onRefresh {
-            presenter.getPreviousMatch()
+            presenter.getPreviousMatch(leagueId)
         }
     }
 

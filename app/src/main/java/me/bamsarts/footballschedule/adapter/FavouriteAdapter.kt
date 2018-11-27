@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import me.bamsarts.footballschedule.DB.FavouriteData
+import me.bamsarts.footballschedule.db.FavouriteData
 import me.bamsarts.footballschedule.R
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class FavouriteAdapter(private val favorite:List<FavouriteData>,
@@ -30,7 +29,7 @@ class FavouriteAdapter(private val favorite:List<FavouriteData>,
             awayName.text = favorite.strAwayTeam
             awayScore.text = favorite.intAwayScore?: "-"
 
-            itemView.onClick { listener(favorite) }
+            itemView.setOnClickListener{ listener(favorite) }
         }
     }
 

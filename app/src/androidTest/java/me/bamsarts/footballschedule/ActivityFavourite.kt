@@ -20,7 +20,7 @@ class ActivityFavourite{
     var ruleActivity = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun addAndRemoveFavouriteBehaviour(){
+    fun addFavouriteBehaviour(){
         Thread.sleep(4000)
         onView(withId(idPreviousMatch)).check(matches(isDisplayed()))
         onView(withId(idPreviousMatch)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(4))
