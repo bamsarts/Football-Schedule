@@ -7,10 +7,15 @@ import android.support.v4.view.ViewPager
 import android.support.v7.widget.SearchView
 import android.view.*
 import me.bamsarts.footballschedule.R
+import me.bamsarts.footballschedule.activity.SearchActivity
 import me.bamsarts.footballschedule.adapter.ViewPagerAdapter
+import me.bamsarts.footballschedule.presenter.SearchPresenter
 import org.jetbrains.anko.startActivity
 
 class MatchFragment : Fragment() {
+
+    private lateinit var presenter: SearchPresenter
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,15 +41,16 @@ class MatchFragment : Fragment() {
 
         val searchView = menu?.findItem(R.id.actionSearch)?.actionView as SearchView?
 
-        searchView?.queryHint = "Search matches"
+        searchView?.queryHint = "Search match..."
 
-        searchView?.setOnQueryTextListener(object : android.support.v7.widget.SearchView.OnQueryTextListener {
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(matchName: String): Boolean {
-                context?.startActivity<SearchMatchActivity>("matchName" to matchName)
+                context?.startActivity<SearchActivity>("matchName" to matchName)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
+//                presenter.getMatchSearch()
                 return false
             }
         })

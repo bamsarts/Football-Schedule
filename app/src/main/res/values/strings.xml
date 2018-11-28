@@ -4,6 +4,9 @@
     <string name="title_fav">Favorit</string>
     <string name="nextMatch">Next Match</string>
     <string name="prevMatch">Previous Match</string>
+    <string name="titleMatch">Match</string>
+    <string name="titleTeams">Teams</string>
+
 
     <string name="stripe">-</string>
     <string name="vs">VS</string>
@@ -14,5 +17,13 @@
     <string name="forward">Forward</string>
     <string name="subtitutes">Subtitutes</string>
     <string name="defense">Defense</string>
+
+    <array name="league">
+        <item>English Premier League</item>
+        <item>German Bundesliga</item>
+        <item>Italian Serie A</item>
+        <item>French Ligue 1</item>
+        <item>Spanish La Liga</item>
+    </array>
 
 </resources>

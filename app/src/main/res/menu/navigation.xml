@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/previousNavigator"
+            android:id="@+id/matchNavigator"
             android:icon="@drawable/ic_football"
-            android:title="@string/prevMatch"/>
+            android:title="@string/titleMatch"/>
 
     <item
-            android:id="@+id/nextNavigator"
-            android:icon="@drawable/ic_football"
-            android:title="@string/nextMatch" />
+            android:id="@+id/teamsNavigator"
+            android:icon="@drawable/ic_workers"
+            android:title="@string/titleTeams" />
 
     <item
             android:id="@+id/favouriteNavigator"
