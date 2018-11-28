@@ -8,7 +8,6 @@ import me.bamsarts.footballschedule.fragment.NextMatchFragment
 import me.bamsarts.footballschedule.fragment.PreviousMatchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
