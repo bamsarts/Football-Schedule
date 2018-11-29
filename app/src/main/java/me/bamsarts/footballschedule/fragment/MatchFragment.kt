@@ -50,9 +50,16 @@ class MatchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-//                presenter.getMatchSearch()
+//                presenter.getMatchSearch(newText)
                 return false
             }
         })
+
+//        searchView?.setOnCloseListener(object: SearchView.OnCloseListener{
+//            override fun onClose(): Boolean {
+//                presenter.getTeamList(leagueName)
+//                return true
+//            }
+//        })
     }
 }

@@ -3,7 +3,6 @@ package me.bamsarts.footballschedule.fragment
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.R.attr.colorAccent
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
@@ -18,6 +17,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import me.bamsarts.footballschedule.R.color.colorAccent
 import me.bamsarts.footballschedule.apis.ApiRepo
 import me.bamsarts.footballschedule.model.Team
 import me.bamsarts.footballschedule.presenter.TeamOverviewPresenter
@@ -79,7 +79,8 @@ class TeamOverviewFragment : Fragment(), AnkoComponent<Context>, TeamOverviewVie
             backgroundColor = Color.WHITE
 
             swipeRefresh = swipeRefreshLayout {
-                setColorSchemeResources(colorAccent,
+                setColorSchemeResources(
+                    colorAccent,
                     android.R.color.holo_green_light,
                     android.R.color.holo_orange_light,
                     android.R.color.holo_red_light)

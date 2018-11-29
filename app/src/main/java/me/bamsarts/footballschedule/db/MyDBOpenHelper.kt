@@ -31,11 +31,19 @@ class MyDBOpenHelper(context: Context) : ManagedSQLiteOpenHelper(context, "db_fa
             FavouriteData.idAwayTeam to TEXT,
             FavouriteData.strDate to TEXT
         )
+
+        db?.createTable(FavouriteTeam.TABLE_TEAM_FAVORITE, true,
+            FavouriteTeam.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            FavouriteTeam.TEAM_ID to TEXT + UNIQUE,
+            FavouriteTeam.TEAM_NAME to TEXT,
+            FavouriteTeam.TEAM_BADGE to TEXT)
     }
 
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.dropTable("TABLE_FAVOURITE_MATCH", true)
+        db?.dropTable(FavouriteTeam.TABLE_TEAM_FAVORITE, true)
+
     }
 }
 

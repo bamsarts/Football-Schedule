@@ -34,7 +34,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
     private lateinit var adapter: TeamsAdapter
     private lateinit var spinner: Spinner
     private lateinit var listEvent: RecyclerView
-    private lateinit var progressBar: ProgressBar
+//    private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var leagueName: String
 
@@ -55,6 +55,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
         val request = ApiRepo()
         val gson = Gson()
         presenter = TeamsPresenter(this, request, gson)
+
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 leagueName = spinner.selectedItem.toString()
@@ -100,10 +101,10 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
                         layoutManager = LinearLayoutManager(ctx)
                     }
 
-                    progressBar = progressBar {
-                    }.lparams{
-                        centerHorizontally()
-                    }
+//                    progressBar = progressBar {
+//                    }.lparams{
+//                        centerHorizontally()
+//                    }
                 }
             }
         }
