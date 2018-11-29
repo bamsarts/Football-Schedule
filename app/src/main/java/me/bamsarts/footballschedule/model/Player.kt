@@ -16,6 +16,12 @@ data class Player(
     var strDescriptionEN: String? = null,
 
     @SerializedName("strCutout")
-    var strCutout: String? = null
+    var strCutout: String? = null,
+
+    @SerializedName("strThumb")
+    var strThumb: String? = null,
+
+    @SerializedName("strFanart1")
+    var strFanart1: String? = null
 
 )

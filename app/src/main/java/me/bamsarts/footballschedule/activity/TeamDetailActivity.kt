@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -132,10 +133,13 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
             database.use {
                 insert(FavouriteTeam.TABLE_TEAM_FAVORITE,
                     FavouriteTeam.TEAM_ID to teams.idTeam,
-                    FavouriteTeam.TEAM_NAME to teams.strTeam,
-                    FavouriteTeam.TEAM_BADGE to teams.strTeamBadge)
+                    FavouriteTeam.TEAM_NAME to teams.strTeamBadge,
+                    FavouriteTeam.TEAM_BADGE to teams.strTeam)
             }
+            Log.i("Team", teams.strTeamBadge)
             toast("Added to favorite")
+            toast("${teams.strTeamBadge}")
+            toast("${teams.strTeam}")
 
         } catch (e: SQLiteConstraintException){
             toast(e.localizedMessage)

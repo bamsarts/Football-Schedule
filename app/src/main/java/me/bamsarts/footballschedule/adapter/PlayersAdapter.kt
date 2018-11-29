@@ -61,7 +61,8 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val playerName: TextView = view.find(R.id.player_name)
 
     fun bindItem(player: Player, listener: (Player) -> Unit) {
-        Picasso.get().load(player.strCutout).into(playerImage)
+        if (player.strCutout != null) Picasso.get().load(player.strCutout).into(playerImage) else Picasso.get().load(player.strThumb).into(playerImage)
+
 //        Glide.with(this).load(player.strCutout).into(playerImage)
         playerName.text = player.strPlayer
         itemView.setOnClickListener { listener(player) }
