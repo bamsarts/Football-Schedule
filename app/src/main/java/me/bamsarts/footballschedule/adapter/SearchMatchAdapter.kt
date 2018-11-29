@@ -89,8 +89,8 @@ class SearchMatchViewHolder(view: View) : RecyclerView.ViewHolder(view){
         homeScore.text = matches.homeScore
         awayName.text = matches.awayTeam
         awayScore.text = matches.awayScore
-        matchDate.text = matches.eventDate
+        matchDate.text = matches.dateEvent
 
-        itemView.onClick { listener(matches) }
+        itemView.setOnClickListener{ listener(matches) }
     }
 }

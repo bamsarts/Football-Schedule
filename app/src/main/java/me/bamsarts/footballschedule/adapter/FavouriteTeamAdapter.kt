@@ -6,32 +6,31 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import me.bamsarts.footballschedule.R.id.team_badge
 import me.bamsarts.footballschedule.R.id.team_name
-import me.bamsarts.footballschedule.model.Team
+import me.bamsarts.footballschedule.db.FavouriteTeam
 import org.jetbrains.anko.*
 
-class TeamsAdapter(private val teams: List<Team>, private val listener: (Team) -> Unit)
-    : RecyclerView.Adapter<TeamViewHolder>() {
+class FavouriteTeamAdapter(private val favorite: List<FavouriteTeam>, private val listener: (FavouriteTeam) -> Unit)
+    : RecyclerView.Adapter<FavoriteViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
-        return TeamViewHolder(TeamsUI().createView(AnkoContext.create(parent.context, parent)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
+        return FavoriteViewHolder(FavouriteUI().createView(AnkoContext.create(parent.context, parent)))
     }
 
-    override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-        holder.bindItem(teams[position], listener)
+    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
+        holder.bindItem(favorite[position], listener)
     }
 
-    override fun getItemCount(): Int = teams.size
+    override fun getItemCount(): Int = favorite.size
 
 }
 
-class TeamsUI : AnkoComponent<ViewGroup> {
+class FavouriteUI : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
         return with(ui) {
-            linearLayout {
+            linearLayout{
                 lparams(width = matchParent, height = wrapContent)
                 padding = dip(16)
                 orientation = LinearLayout.HORIZONTAL
@@ -56,15 +55,14 @@ class TeamsUI : AnkoComponent<ViewGroup> {
 
 }
 
-class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view){
+class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
     private val teamBadge: ImageView = view.find(team_badge)
     private val teamName: TextView = view.find(team_name)
 
-    fun bindItem(teams: Team, listener: (Team) -> Unit) {
-//        Glide.with(this).load(teams.strTeamBadge).into(teamBadge)
-        Picasso.get().load(teams.strTeamBadge).into(teamBadge)
-        teamName.text = teams.strTeam
-        itemView.setOnClickListener { listener(teams) }
+    fun bindItem(favorite: FavouriteTeam, listener: (FavouriteTeam) -> Unit) {
+        Picasso.get().load(favorite.teamBadge).into(teamBadge)
+        teamName.text = favorite.teamName
+        itemView.setOnClickListener { listener(favorite) }
     }
 }

@@ -26,7 +26,7 @@ class TeamsPresenter(private val view: TeamsView,
             )
 
 
-            view.showTeamList(data.teams)
+            view.showTeamList(data.teams?: Collections.emptyList())
 
         }
 
@@ -40,7 +40,7 @@ class TeamsPresenter(private val view: TeamsView,
                 TeamResponse::class.java
             )
 
-            view.showTeamList(data.teams)
+            view.showTeamList(data.teams?: Collections.emptyList())
 
         }
 

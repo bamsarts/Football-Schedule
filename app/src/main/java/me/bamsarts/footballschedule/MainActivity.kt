@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 R.id.favouriteNavigator -> {
-                    openFragment(FavoriteMatchFragment())
+                    openFragment(FavouriteFragment())
                     return@setOnNavigationItemSelectedListener true
 
                 }

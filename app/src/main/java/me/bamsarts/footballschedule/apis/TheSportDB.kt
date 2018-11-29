@@ -17,14 +17,14 @@ object TheSportDB {
         return BuildConfig.BASE_URL +"api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/eventspastleague.php?id=" + matchId
     }
 
-    fun getNextMatch(): String {
+    fun getNextMatch(matchId: String?): String {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
             .appendPath("api")
             .appendPath("v1")
             .appendPath("json")
             .appendPath(BuildConfig.TSDB_API_KEY)
             .appendPath("eventsnextleague.php")
-            .appendQueryParameter("id", "4328")
+            .appendQueryParameter("id", matchId)
             .build()
             .toString()
     }

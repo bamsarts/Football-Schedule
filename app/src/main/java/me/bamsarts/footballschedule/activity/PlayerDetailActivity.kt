@@ -2,7 +2,6 @@ package me.bamsarts.footballschedule.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.R.attr.colorAccent
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
@@ -10,6 +9,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
+import me.bamsarts.footballschedule.R
 import me.bamsarts.footballschedule.model.Player
 import org.jetbrains.anko.*
 
@@ -55,7 +56,7 @@ class PlayerDetailActivity : AppCompatActivity(){
                         playerName = textView{
                             this.gravity = Gravity.CENTER
                             textSize = 20f
-                            textColor = ContextCompat.getColor(context, colorAccent)
+                            textColor = ContextCompat.getColor(context, R.color.colorAccent)
                         }.lparams{
                             topMargin = dip(5)
                         }
@@ -73,8 +74,8 @@ class PlayerDetailActivity : AppCompatActivity(){
 
 
     fun showPlayerDetail() {
-//        Picasso.get().load(imagePlayer).into(playerImage)
-        Glide.with(this).load(imagePlayer).into(playerImage)
+        Picasso.get().load(imagePlayer).into(playerImage)
+//        Glide.with(this).load(imagePlayer).into(playerImage)
         playerName.text = namePlayer
         playerDesc.text = descPlayer
     }

@@ -25,7 +25,7 @@ class SearchPresenter(private val view: SearchMatchView,
             )
 
 
-            view.showMatchList(data.event)
+            view.showMatchList(data.event?: Collections.emptyList())
 
         }
     }

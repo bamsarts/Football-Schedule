@@ -24,7 +24,7 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
 class SearchActivity : AppCompatActivity(), SearchMatchView{
 
     private lateinit var listEvent: RecyclerView
-    private lateinit var progressBar: ProgressBar
+//    private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
 
 
@@ -63,10 +63,10 @@ class SearchActivity : AppCompatActivity(), SearchMatchView{
                         layoutManager = LinearLayoutManager(this@SearchActivity)
                     }
 
-                    progressBar = progressBar {
-                    }.lparams{
-                        centerHorizontally()
-                    }
+//                    progressBar = progressBar {
+//                    }.lparams{
+//                        centerHorizontally()
+//                    }
                 }
             }
         }

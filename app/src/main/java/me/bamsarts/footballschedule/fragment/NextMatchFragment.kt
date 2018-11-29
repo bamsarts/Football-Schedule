@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.google.gson.Gson
 import me.bamsarts.footballschedule.model.Match
 import org.jetbrains.anko.support.v4.startActivity
@@ -27,6 +30,8 @@ class NextMatchFragment : Fragment(), ListMatchView {
     private lateinit var adapter: NextMatchAdapter
     private var events = mutableListOf<Match>()
     private lateinit var presenter: ListMatchPresenter
+    private lateinit var spinner: Spinner
+    private lateinit var leagueName: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_next, container, false)
@@ -42,6 +47,14 @@ class NextMatchFragment : Fragment(), ListMatchView {
         super.onViewCreated(view, savedInstanceState)
         swipe.isRefreshing = true
 
+        spinner = spinner_sample
+
+        val spinnerItems = resources.getStringArray(R.array.league)
+        val spinnerAdapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item, spinnerItems)
+
+
+        spinner.adapter = spinnerAdapter
+
         adapter = NextMatchAdapter(events) {
             startActivity<MatchDetailActivity>(
                 "EVENT_ID" to it.eventId,
@@ -53,10 +66,36 @@ class NextMatchFragment : Fragment(), ListMatchView {
         idNextMatch.layoutManager = LinearLayoutManager(context)
         idNextMatch.adapter = adapter
         presenter = ListMatchPresenter(this, ApiRepo(), Gson())
-        presenter.getNextMatch()
-        swipe.onRefresh {
-            presenter.getNextMatch()
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                leagueName = spinner.selectedItem.toString()
+                when(leagueName){
+                    "English Premier League" -> presenter.getNextMatch("4328")
+                    "German Bundesliga" -> presenter.getNextMatch("4331")
+                    "Italian Serie A" -> presenter.getNextMatch("4332")
+                    "French Ligue 1" -> presenter.getNextMatch("4334")
+                    "Spanish La Liga" -> presenter.getNextMatch("4335")
+                    else -> presenter.getNextMatch("4328")
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
+
+
+        swipe.onRefresh {
+            when(leagueName){
+                "English Premier League" -> presenter.getNextMatch("4328")
+                "German Bundesliga" -> presenter.getNextMatch("4331")
+                "Italian Serie A" -> presenter.getNextMatch("4332")
+                "French Ligue 1" -> presenter.getNextMatch("4334")
+                "Spanish La Liga" -> presenter.getNextMatch("4335")
+                else -> presenter.getNextMatch("4328")
+            }
+        }
+
+
     }
 
     override fun showEventList(data: List<Match>) {

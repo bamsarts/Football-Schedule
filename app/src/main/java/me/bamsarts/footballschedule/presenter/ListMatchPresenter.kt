@@ -23,10 +23,10 @@ class ListMatchPresenter(private val view: ListMatchView, private val apiReposit
 
     }
 
-    fun getNextMatch(){
+    fun getNextMatch(matchId: String?){
 
         GlobalScope.launch(Dispatchers.Main) {
-            val data = gson.fromJson(apiRepository.doRequest(TheSportDB.getNextMatch()).await(), MatchResponse::class.java)
+            val data = gson.fromJson(apiRepository.doRequest(TheSportDB.getNextMatch(matchId)).await(), MatchResponse::class.java)
 
             view.showEventList(data.events)
 
