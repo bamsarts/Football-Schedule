@@ -39,7 +39,7 @@ class MatchFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.search, menu)
 
-        val searchView = menu?.findItem(R.id.actionSearch)?.actionView as SearchView?
+        val searchView = menu?.findItem(R.id.idSearch)?.actionView as SearchView?
 
         searchView?.queryHint = "Search match..."
 

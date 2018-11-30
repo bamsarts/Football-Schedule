@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
 import com.google.gson.Gson
 import me.bamsarts.footballschedule.R
 import me.bamsarts.footballschedule.adapter.ViewPagerAdapter
@@ -60,8 +57,8 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
         teamOverviewFragment.arguments = bundle
         playersFragment.arguments = bundle
 
-        adapter.populateFragment(teamOverviewFragment, "Team Overview")
-        adapter.populateFragment(playersFragment, "Players")
+        adapter.populateFragment(teamOverviewFragment, "Team Description")
+        adapter.populateFragment(playersFragment, "Player List")
 
         team_viewpager.adapter = adapter
         team_tabs.setupWithViewPager(team_viewpager)

@@ -31,7 +31,6 @@ class PlayersFragment : Fragment(), AnkoComponent<Context>, PlayersView {
     private lateinit var presenter: PlayersPresenter
     private lateinit var adapter: PlayersAdapter
     private lateinit var listPlayer: RecyclerView
-//    private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var teamId: String
 
@@ -44,8 +43,11 @@ class PlayersFragment : Fragment(), AnkoComponent<Context>, PlayersView {
         adapter = PlayersAdapter(player) {
             context?.startActivity<PlayerDetailActivity>(
                 "playerName" to "${it.strPlayer}",
-                "playerImage" to "${it.strCutout}",
-                "playerDesc" to "${it.strDescriptionEN}")
+                "playerImage" to "${it.strFanart1}",
+                "playerDesc" to "${it.strDescriptionEN}",
+                "playerHeight" to "${it.strHeight}",
+                "playerWeight" to "${it.strWeight},",
+                "playerPosition" to "${it.strPosition}")
         }
         listPlayer.adapter = adapter
 

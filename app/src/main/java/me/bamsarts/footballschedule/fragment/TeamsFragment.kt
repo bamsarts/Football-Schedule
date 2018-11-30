@@ -96,7 +96,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
                     lparams (width = matchParent, height = wrapContent)
 
                     listEvent = recyclerView {
-                        id = R.id.listEvent
+                        id = R.id.events
                         lparams (width = matchParent, height = wrapContent)
                         layoutManager = LinearLayoutManager(ctx)
                     }
@@ -113,7 +113,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.search, menu)
-        val searchView = menu?.findItem(R.id.actionSearch)?.actionView as SearchView?
+        val searchView = menu?.findItem(R.id.idSearch)?.actionView as SearchView?
         searchView?.queryHint = "Search team"
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

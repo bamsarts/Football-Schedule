@@ -22,6 +22,15 @@ data class Player(
     var strThumb: String? = null,
 
     @SerializedName("strFanart1")
-    var strFanart1: String? = null
+    var strFanart1: String? = null,
+
+    @SerializedName("strHeight")
+    var strHeight: String? = null,
+
+    @SerializedName("strWeight")
+    var strWeight: String? = null,
+
+    @SerializedName("strPosition")
+    var strPosition: String? = null
 
 )

@@ -27,109 +27,49 @@ import me.bamsarts.footballschedule.view.TeamOverviewView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
+import kotlinx.android.synthetic.main.club_description.*
 
-class TeamOverviewFragment : Fragment(), AnkoComponent<Context>, TeamOverviewView {
+class TeamOverviewFragment : Fragment(), TeamOverviewView {
 
-    override fun showTeamDetail(data: List<Team>) {
-        teams = Team(data[0].idTeam,
-            data[0].strTeam,
-            data[0].strTeamBadge)
-        swipeRefresh.isRefreshing = false
-//        Picasso.get().load(data[0].strTeamBadge).into(teamBadge)
-        Glide.with(this).load(data[0].strTeamBadge).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(teamBadge)
-        teamName.text = data[0].strTeam
-        teamDescription.text = data[0].strDescriptionEN
-        teamFormedYear.text = data[0].intFormedYear
-        teamStadium.text = data[0].strStadium
-    }
-
-    private lateinit var presenter: TeamOverviewPresenter
+    private lateinit var presenter: TeamOverviewPresenter = TeamOverviewPresenter(this, ApiRepo(), Gson())
     private lateinit var teams: Team
-//    private lateinit var progressBar: ProgressBar
-    private lateinit var swipeRefresh: SwipeRefreshLayout
-
-    private lateinit var teamBadge: ImageView
-    private lateinit var teamName: TextView
-    private lateinit var teamFormedYear: TextView
-    private lateinit var teamStadium: TextView
-    private lateinit var teamDescription: TextView
+    private lateinit var swipe: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return createView(AnkoContext.create(requireContext()))
+        val view = inflater.inflate(R.layout.club_description, container, false)
+
+        swipe = view.find(R.id.swipeTeamOverview)
+        swipe.setColorSchemeResources(R.color.colorTosca)
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        swipe.isRefreshing = true
 
         val teamid: String? = arguments?.getString("teamId")
-        Log.d("myfragment on activity", teamid)
 
-        val request = ApiRepo()
-        val gson = Gson()
-        presenter = TeamOverviewPresenter(this, request, gson)
         presenter.getTeamDetail(teamid)
 
-        swipeRefresh.onRefresh {
+        swipe.onRefresh {
             presenter.getTeamDetail(teamid)
         }
     }
 
-    override fun createView(ui: AnkoContext<Context>): View = with(ui){
-        linearLayout {
-            lparams(width = matchParent, height = wrapContent)
-            orientation = LinearLayout.VERTICAL
-            backgroundColor = Color.WHITE
 
-            swipeRefresh = swipeRefreshLayout {
-                setColorSchemeResources(
-                    colorAccent,
-                    android.R.color.holo_green_light,
-                    android.R.color.holo_orange_light,
-                    android.R.color.holo_red_light)
+    override fun showTeamDetail(data: List<Team>) {
+        swipe.isRefreshing = false
 
-                scrollView {
-                    isVerticalScrollBarEnabled = false
-                    relativeLayout {
-                        lparams(width = matchParent, height = wrapContent)
+        teams = Team(data[0].idTeam,
+            data[0].strTeam,
+            data[0].strTeamBadge)
 
-                        linearLayout{
-                            lparams(width = matchParent, height = wrapContent)
-                            padding = dip(10)
-                            orientation = LinearLayout.VERTICAL
-                            gravity = Gravity.CENTER_HORIZONTAL
-
-                            teamBadge =  imageView {}.lparams(height = dip(75))
-
-                            teamName = textView{
-                                this.gravity = Gravity.CENTER
-                                textSize = 20f
-                                textColor = ContextCompat.getColor(context, colorAccent)
-                            }.lparams{
-                                topMargin = dip(5)
-                            }
-
-                            teamFormedYear = textView{
-                                this.gravity = Gravity.CENTER
-                            }
-
-                            teamStadium = textView{
-                                this.gravity = Gravity.CENTER
-
-                            }
-
-                            teamDescription = textView().lparams{
-                                topMargin = dip(20)
-                            }
-                        }
-//                        progressBar = progressBar {
-//                        }.lparams {
-//                            centerHorizontally()
-//                        }
-                    }
-                }
-            }
-        }
-
+        Glide.with(this).load(data[0].strTeamBadge).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(clubBadge)
+        clubName.text = data[0].strTeam
+        clubDescription.text = data[0].strDescriptionEN
+        clubYear.text = data[0].intFormedYear
+        clubStadium.text = data[0].strStadium
     }
 
 }

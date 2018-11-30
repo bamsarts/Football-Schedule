@@ -3,7 +3,7 @@
     <item name="team_badge" type="id" />
     <item name="team_name" type="id" />
     <item name="spinner" type="id" />
-    <item name="listEvent" type="id" />
+    <item name="events" type="id" />
 
     <item name="team_year" type="id"/>
     <item name="team_stadium" type="id"/>
