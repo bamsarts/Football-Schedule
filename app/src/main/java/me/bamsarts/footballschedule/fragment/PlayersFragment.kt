@@ -31,7 +31,7 @@ class PlayersFragment : Fragment(), AnkoComponent<Context>, PlayersView {
     private lateinit var presenter: PlayersPresenter
     private lateinit var adapter: PlayersAdapter
     private lateinit var listPlayer: RecyclerView
-    private lateinit var progressBar: ProgressBar
+//    private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var teamId: String
 
@@ -89,10 +89,10 @@ class PlayersFragment : Fragment(), AnkoComponent<Context>, PlayersView {
                         layoutManager = LinearLayoutManager(ctx)
                     }
 
-                    progressBar = progressBar {
-                    }.lparams{
-                        centerHorizontally()
-                    }
+//                    progressBar = progressBar {
+//                    }.lparams{
+//                        centerHorizontally()
+//                    }
                 }
             }
         }

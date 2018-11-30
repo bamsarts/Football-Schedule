@@ -33,13 +33,6 @@ import org.jetbrains.anko.db.delete
 class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
     private lateinit var presenter: TeamDetailPresenter
     private lateinit var teams: Team
-    private lateinit var progressBar: ProgressBar
-
-    private lateinit var teamBadge: ImageView
-    private lateinit var teamName: TextView
-    private lateinit var teamFormedYear: TextView
-    private lateinit var teamStadium: TextView
-    private lateinit var teamDescription: TextView
 
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
@@ -73,7 +66,7 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
         team_viewpager.adapter = adapter
         team_tabs.setupWithViewPager(team_viewpager)
 
-        progressBar = teamProgressBar
+//        progressBar = teamProgressBar
 
 
         favoriteState()

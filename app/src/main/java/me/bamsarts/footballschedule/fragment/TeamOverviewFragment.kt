@@ -16,7 +16,9 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.gson.Gson
+import me.bamsarts.footballschedule.R
 import me.bamsarts.footballschedule.R.color.colorAccent
 import me.bamsarts.footballschedule.apis.ApiRepo
 import me.bamsarts.footballschedule.model.Team
@@ -34,7 +36,7 @@ class TeamOverviewFragment : Fragment(), AnkoComponent<Context>, TeamOverviewVie
             data[0].strTeamBadge)
         swipeRefresh.isRefreshing = false
 //        Picasso.get().load(data[0].strTeamBadge).into(teamBadge)
-        Glide.with(this).load(data[0].strTeamBadge).into(teamBadge)
+        Glide.with(this).load(data[0].strTeamBadge).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(teamBadge)
         teamName.text = data[0].strTeam
         teamDescription.text = data[0].strDescriptionEN
         teamFormedYear.text = data[0].intFormedYear
@@ -43,7 +45,7 @@ class TeamOverviewFragment : Fragment(), AnkoComponent<Context>, TeamOverviewVie
 
     private lateinit var presenter: TeamOverviewPresenter
     private lateinit var teams: Team
-    private lateinit var progressBar: ProgressBar
+//    private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
 
     private lateinit var teamBadge: ImageView
@@ -119,10 +121,10 @@ class TeamOverviewFragment : Fragment(), AnkoComponent<Context>, TeamOverviewVie
                                 topMargin = dip(20)
                             }
                         }
-                        progressBar = progressBar {
-                        }.lparams {
-                            centerHorizontally()
-                        }
+//                        progressBar = progressBar {
+//                        }.lparams {
+//                            centerHorizontally()
+//                        }
                     }
                 }
             }
