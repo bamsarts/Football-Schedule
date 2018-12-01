@@ -6,6 +6,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import me.bamsarts.footballschedule.R
 import kotlinx.android.synthetic.main.player_detail.*
+import me.bamsarts.footballschedule.utils.parse
+import me.bamsarts.footballschedule.utils.parseComma
 
 class PlayerDetailActivity : AppCompatActivity(){
 
@@ -45,7 +47,7 @@ class PlayerDetailActivity : AppCompatActivity(){
         Glide.with(this).load(imagePlayer).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(playerImage)
         playerDesc.text = descPlayer
         playerPosition.text = positionPlayer
-        playerWeight.text = weightPlayer
+        playerWeight.text = weightPlayer.parseComma()
         playerHeight.text = heightPlayer
 
     }

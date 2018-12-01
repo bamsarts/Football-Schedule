@@ -63,9 +63,6 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
         team_viewpager.adapter = adapter
         team_tabs.setupWithViewPager(team_viewpager)
 
-//        progressBar = teamProgressBar
-
-
         favoriteState()
         val request = ApiRepo()
         val gson = Gson()
@@ -126,10 +123,6 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
                     FavouriteTeam.TEAM_NAME to teams.strTeamBadge,
                     FavouriteTeam.TEAM_BADGE to teams.strTeam)
             }
-            Log.i("Team", teams.strTeamBadge)
-            toast("Added to favorite")
-            toast("${teams.strTeamBadge}")
-            toast("${teams.strTeam}")
 
         } catch (e: SQLiteConstraintException){
             toast(e.localizedMessage)

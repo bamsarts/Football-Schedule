@@ -15,6 +15,10 @@ fun String.parse(delimiter: String = ";", replacement: String = System.getProper
     return this.replace(delimiter, replacement)
 }
 
+fun String.parseComma(delimiter: String = ",", replacement: String = System.getProperty("line.separator") ) : String {
+    return this.replace(delimiter, replacement)
+}
+
 @SuppressLint("SimpleDateFormat")
 fun toSimpleString(date: Date?): String = with(date ?: Date()){
     SimpleDateFormat("EEE, dd MMM yyy").format(this)

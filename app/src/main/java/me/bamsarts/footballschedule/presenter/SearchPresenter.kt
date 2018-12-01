@@ -6,6 +6,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import me.bamsarts.footballschedule.apis.ApiRepo
 import me.bamsarts.footballschedule.apis.TheSportDB
+import me.bamsarts.footballschedule.model.Match
 import me.bamsarts.footballschedule.model.SearchMatchResponse
 import me.bamsarts.footballschedule.view.SearchMatchView
 import org.jetbrains.anko.doAsync

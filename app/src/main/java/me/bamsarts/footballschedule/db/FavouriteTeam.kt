@@ -1,7 +1,7 @@
 package me.bamsarts.footballschedule.db
 
 data class FavouriteTeam(
-    val id: Long?,
+    val id: Int?,
     val teamId: String?,
     val teamName: String?,
     val teamBadge: String?) {

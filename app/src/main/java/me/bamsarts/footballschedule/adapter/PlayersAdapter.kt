@@ -1,13 +1,13 @@
 package me.bamsarts.footballschedule.adapter
 
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.request.RequestOptions
 import me.bamsarts.footballschedule.R
 import me.bamsarts.footballschedule.model.Player
 import org.jetbrains.anko.*
@@ -16,10 +16,12 @@ class PlayersAdapter(private val player: List<Player>, private val listener: (Pl
     : RecyclerView.Adapter<PlayerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
-        return PlayerViewHolder(PlayersUI().createView(AnkoContext.create(parent.context, parent)))
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list_player, parent, false)
+        return PlayerViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
+
         holder.bindItem(player[position], listener)
     }
 
@@ -27,43 +29,19 @@ class PlayersAdapter(private val player: List<Player>, private val listener: (Pl
 
 }
 
-class PlayersUI : AnkoComponent<ViewGroup> {
-    override fun createView(ui: AnkoContext<ViewGroup>): View {
-        return with(ui) {
-            linearLayout {
-                lparams(width = matchParent, height = wrapContent)
-                padding = dip(16)
-                orientation = LinearLayout.HORIZONTAL
 
-                imageView {
-                    id = R.id.player_image
-                }.lparams{
-                    height = dip(50)
-                    width = dip(50)
-                }
+class PlayerViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view){
 
-                textView {
-                    id = R.id.player_name
-                    textSize = 16f
-                }.lparams{
-                    margin = dip(15)
-                }
-
-            }
-        }
-    }
-
-}
-
-class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view){
-
-    private val playerImage: ImageView = view.find(R.id.player_image)
-    private val playerName: TextView = view.find(R.id.player_name)
+    private val playerImage: ImageView = view.find(R.id.imgPlayer)
+    private val playerName: TextView = view.find(R.id.namePlayer)
 
     fun bindItem(player: Player, listener: (Player) -> Unit) {
-        if (player.strCutout != null) Picasso.get().load(player.strCutout).into(playerImage) else Picasso.get().load(player.strThumb).into(playerImage)
 
-//        Glide.with(this).load(player.strCutout).into(playerImage)
+        if(player.strCutout != null)
+            Glide.with(itemView.context).load(player.strCutout).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(playerImage)
+        else
+            Glide.with(itemView.context).load(player.strThumb).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(playerImage)
+
         playerName.text = player.strPlayer
         itemView.setOnClickListener { listener(player) }
     }

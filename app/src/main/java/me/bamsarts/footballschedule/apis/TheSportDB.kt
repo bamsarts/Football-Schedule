@@ -30,7 +30,7 @@ object TheSportDB {
     }
 
     fun getMatchSearch(teamName: String?): String{
-        return BuildConfig.BASE_URL +"api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/searchevents.php?e=" + teamName
+        return BuildConfig.BASE_URL +"api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/searchevents.php?e=" + teamName + "&s=1819"
     }
 
     fun getTeams(league: String?): String {
@@ -67,10 +67,6 @@ object TheSportDB {
             .appendQueryParameter("id",teamId)
             .build()
             .toString()
-    }
-
-    fun getPlayerById(playerId: String?): String{
-        return BuildConfig.BASE_URL +"api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookupplayer.php?id=" + playerId
     }
 
 

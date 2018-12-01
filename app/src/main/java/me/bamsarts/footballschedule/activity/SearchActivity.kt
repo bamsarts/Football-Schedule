@@ -32,6 +32,7 @@ class SearchActivity : AppCompatActivity(), SearchMatchView{
     private lateinit var adapter: SearchMatchAdapter
     private var matchs: MutableList<Match> = mutableListOf()
     private lateinit var nameTeam: String
+    private lateinit var season: String
     private val presenter: SearchPresenter = SearchPresenter(this, ApiRepo(), Gson())
 
 

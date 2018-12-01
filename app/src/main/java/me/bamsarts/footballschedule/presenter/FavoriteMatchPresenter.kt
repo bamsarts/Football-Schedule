@@ -2,8 +2,10 @@ package me.bamsarts.footballschedule.presenter
 
 import android.content.Context
 import me.bamsarts.footballschedule.db.FavouriteData
+import me.bamsarts.footballschedule.db.FavouriteTeam
 import me.bamsarts.footballschedule.db.database
 import org.jetbrains.anko.db.MapRowParser
+import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.parseList
 import org.jetbrains.anko.db.select
 
@@ -34,6 +36,15 @@ class FavoriteMatchPresenter(private val context: Context?){
             }
 
             this@FavoriteMatchPresenter
+        }
+    }
+
+    fun fetchFavTeams(list: MutableList<FavouriteTeam>){
+        this.context?.database?.use {
+
+            val result = select(FavouriteTeam.TABLE_TEAM_FAVORITE)
+            val favorite = result.parseList(classParser<FavouriteTeam>())
+            list.addAll(favorite)
         }
     }
 }

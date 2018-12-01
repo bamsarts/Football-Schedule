@@ -1,37 +1,26 @@
 package me.bamsarts.footballschedule.fragment
 
-import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
-import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.gson.Gson
 import me.bamsarts.footballschedule.R
-import me.bamsarts.footballschedule.R.color.colorAccent
 import me.bamsarts.footballschedule.apis.ApiRepo
 import me.bamsarts.footballschedule.model.Team
 import me.bamsarts.footballschedule.presenter.TeamOverviewPresenter
 import me.bamsarts.footballschedule.view.TeamOverviewView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.swipeRefreshLayout
 import kotlinx.android.synthetic.main.club_description.*
 
 class TeamOverviewFragment : Fragment(), TeamOverviewView {
 
-    private lateinit var presenter: TeamOverviewPresenter = TeamOverviewPresenter(this, ApiRepo(), Gson())
+    private var presenter: TeamOverviewPresenter = TeamOverviewPresenter(this, ApiRepo(), Gson())
     private lateinit var teams: Team
     private lateinit var swipe: SwipeRefreshLayout
 

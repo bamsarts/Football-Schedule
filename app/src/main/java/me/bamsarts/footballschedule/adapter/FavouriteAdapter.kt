@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import me.bamsarts.footballschedule.db.FavouriteData
 import me.bamsarts.footballschedule.R
+import me.bamsarts.footballschedule.utils.formatDate
 import org.jetbrains.anko.*
 
 
@@ -23,7 +24,7 @@ class FavouriteAdapter(private val favorite:List<FavouriteData>,
 
         fun bindItem(favorite: FavouriteData, listener: (FavouriteData) -> Unit){
 
-            eventDate.text = favorite.DATE_EVENT
+            eventDate.text = favorite.DATE_EVENT?.formatDate()
             homeName.text = favorite.strHomeTeam
             homeScore.text = favorite.intHomeScore?: "-"
             awayName.text = favorite.strAwayTeam

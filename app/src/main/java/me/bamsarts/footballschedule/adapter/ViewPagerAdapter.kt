@@ -9,13 +9,14 @@ class ViewPagerAdapter(fragmentManager: FragmentManager?) : FragmentPagerAdapter
     var fragmentList = arrayListOf<Fragment>()
     var titleList = arrayListOf<String>()
 
+    override fun getItem(position: Int) = fragmentList[position]
+
     fun populateFragment(fragment: Fragment, title: String){
         fragmentList.add(fragment)
         titleList.add(title)
     }
-    override fun getItem(position: Int) = fragmentList[position]
-
-    override fun getCount() = fragmentList.size
 
     override fun getPageTitle(position: Int) = titleList[position]
+
+    override fun getCount() = fragmentList.size
 }

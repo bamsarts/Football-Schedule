@@ -67,5 +67,9 @@ data class Match(
     val awaySubtitutes: String? = null,
 
     @SerializedName("dateEvent")
-    val dateEvent: String? = null
+    val dateEvent: String? = null,
+
+    @SerializedName("strSeason")
+    val strSeason: String? = null
+
 ) : Parcelable
